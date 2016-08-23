@@ -25,6 +25,12 @@ image:
 stop:
 	docker ps | grep janus | cut -f1 -d' ' | xargs docker stop
 
+serve:
+	cd www && python -m SimpleHTTPServer
+
+# centos:
+# sudo yum -y install http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+# sudo yum -y install gstreamer1-plugins-good gstreamer1-plugins-ugly
 gst-demo:
 	gst-launch-1.0 \
 	videotestsrc ! \
