@@ -37,44 +37,16 @@
     <script type="text/javascript" src="panoptic_client.js"></script>
     <script>
       $(() => {
-
-      ///////////
+        ///////////
         let janusServerAddress = ['ws://localhost:8188/','http://localhost:8088/janus'];
-
-        function init() {
-          Janus.init({debug: "all", callback: function() {
-            console.log("init");
-            if (! Janus.isWebrtcSupported()) {
-              alert("Your browser does not support video streaming.");
-              return;
-            }
-
-            initClient();
-          }});
-        }
-
-        // janus is initialized, create client connection
-        function initClient() {
-          let janus = new Janus({
-            'server': janusServerAddress,
-            'success': () => {
-              janus.attach({
-                plugin: "janus.plugin.streaming",
-                success: (handle) => {
-                  console.log("got handle for " + handle.getPlugin());
-
-                },
-                error: (err) => {
-                  console.error("Error attaching to streaming plugin: " + err);
-                }
-              });
-            }
-          });
-        }
-
-        init();
-
-      ///////////
+        let poc = new PanopticClient(janusServerAddress);
+        poc.init().then((streamList) => {
+          console.log("got streamList");
+          console.log(streamList);
+        }).catch((err) => {
+          console.error(`Error initializing client: ${err}`);
+        })
+        ///////////
       });
     </script>
   </body>
