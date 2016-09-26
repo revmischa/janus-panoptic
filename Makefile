@@ -38,6 +38,6 @@ GST_DST ?= 127.0.0.1
 gst-demo:
 	gst-launch-1.0 \
 	videotestsrc ! \
-	video/x-raw,width=320,height=240,framerate=15/1 ! \
+	video/x-raw,width=640,height=480,framerate=20/1 ! \
 	videoscale ! videorate ! videoconvert ! timeoverlay ! \
-	x264enc ! rtph264pay config-interval=1 ! udpsink host=$(GST_DST) port=5009
+	x264enc tune=zerolatency ! queue ! rtph264pay config-interval=1 ! udpsink host=$(GST_DST) port=5009

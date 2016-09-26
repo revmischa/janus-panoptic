@@ -26,7 +26,7 @@
       <h2>Live stream demo</h2>
       <div class="container">
         <div class="row">
-          <video id="streamPlayer" style="height: 100%; background-color: #fee;" class="row-md-12">
+          <video id="streamPlayer" style="height: 100%; background-color: #fee;" class="row-md-12" controls>
             Loading...
           </div>
         </div>
@@ -44,7 +44,7 @@
       $(() => {
         let streamPlayer = document.body.querySelector('#streamPlayer');
         ///////////
-        let janusServerAddress = ['ws://janus.hard.chat:8188/','http://janus.hard.chat:8088/janus'];
+        let janusServerAddress = ['ws://janus2.hard.chat:8188/','http://janus2.hard.chat:8088/janus'];
         // let janusServerAddress = ['ws://localhost:8188/','http://localhost:8088/janus'];
         let poc = new PanopticClient(janusServerAddress);
         poc.init().then((streamList) => {
