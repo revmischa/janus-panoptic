@@ -28,12 +28,16 @@ stop:
 serve:
 	cd www && python -m SimpleHTTPServer
 
+s3 s3upload:
+	aws s3 sync --region us-west-2 www/ s3://live.hard.chat/
+
 # centos:
 # sudo yum -y install http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
 # sudo yum -y install gstreamer1-plugins-good gstreamer1-plugins-ugly
+GST_DST ?= 127.0.0.1
 gst-demo:
 	gst-launch-1.0 \
 	videotestsrc ! \
 	video/x-raw,width=320,height=240,framerate=15/1 ! \
 	videoscale ! videorate ! videoconvert ! timeoverlay ! \
-	x264enc ! rtph264pay config-interval=1 ! udpsink host=127.0.0.1 port=5009
+	x264enc ! rtph264pay config-interval=1 ! udpsink host=$(GST_DST) port=5009
