@@ -1,8 +1,9 @@
-TCP_PORTS = 7088 8088 7889 8089 8188 7188
-UDP_PORTS = 5009
+# TCP_PORTS = 7088 8088 7889 8089 8188 7188
+TCP_PORTS = 7088 7889 8089 8188 7188
+UDP_PORTS = 5009 5008
 
-fwd_tcp := $(shell PORT_FORWARD=""; for port in $(TCP_PORTS); do PORT_FORWARD="$$PORT_FORWARD -p 0.0.0.0:$$port:$$port"; done; echo $$PORT_FORWARD)
-fwd_udp := $(shell PORT_FORWARD=""; for port in $(UDP_PORTS); do PORT_FORWARD="$$PORT_FORWARD -p 0.0.0.0:$$port:$$port/udp"; done; echo $$PORT_FORWARD)
+fwd_tcp := $(shell PORT_FORWARD=""; for port in $(TCP_PORTS); do PORT_FORWARD="$$PORT_FORWARD -p $$port:$$port"; done; echo $$PORT_FORWARD)
+fwd_udp := $(shell PORT_FORWARD=""; for port in $(UDP_PORTS); do PORT_FORWARD="$$PORT_FORWARD -p $$port:$$port/udp"; done; echo $$PORT_FORWARD)
 fwd := $(fwd_tcp) $(fwd_udp)
 
 TEMPLATE_NAME ?= janus-panoptic
