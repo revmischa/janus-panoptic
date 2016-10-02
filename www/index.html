@@ -44,8 +44,10 @@
       $(() => {
         let streamPlayer = document.body.querySelector('#streamPlayer');
         ///////////
-        let janusServerAddress = ['ws://janus2.hard.chat:8188/','http://janus2.hard.chat:8088/janus'];
+        // let janusServerAddress = ['ws://janus2.hard.chat:8188/','http://janus2.hard.chat:8088/janus'];
         // let janusServerAddress = ['ws://localhost:8188/','http://localhost:8088/janus'];
+        // let janusServerAddress = ['ws://westberkeley.lan:8188/','http://westberkeley.lan:8088/janus'];
+        let janusServerAddress = ['wss://janus.hard.chat:8989','https://janus.hard.chat:8089/janus'];
         let poc = new PanopticClient(janusServerAddress);
         poc.init().then((streamList) => {
           console.log("got streamList");
